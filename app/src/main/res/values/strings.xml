@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cinema Land</string>
+
+    <string name="transition_name">poster</string>
+
+    <!--menu-->
+    <string name="menu_top_rated">Top Rated</string>
+    <string name="menu_popular">Popular</string>
+</resources>
