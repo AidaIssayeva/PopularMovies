@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+    <variable
+        name="viewModel"
+        type="com.aida.popularmovies.ViewModel.MovieViewModel" />
+    <variable
+        name="video"
+        type="com.aida.popularmovies.Model.Video" />
+        <variable
+            name="review"
+            type="com.aida.popularmovies.Model.Review" />
+    </data>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:onClick="@{(v) -> viewModel.onTrailerClicked(v, video != null ? video.key: null)}"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/lblauthor"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lblListItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+
+</LinearLayout>
+    </layout>

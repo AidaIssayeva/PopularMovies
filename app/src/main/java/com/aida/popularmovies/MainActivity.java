@@ -12,10 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.aida.popularmovies.Model.ApiResponse;
+import com.aida.popularmovies.Model.MovieResponse;
 import com.aida.popularmovies.Model.Movie;
+import com.aida.popularmovies.Model.VideoResponse;
 import com.aida.popularmovies.ViewModel.MovieListViewModel;
 import com.aida.popularmovies.databinding.ActivityMainBinding;
 import com.aida.popularmovies.network.ApiFactory;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ApiFactory.ResponseListener {
 
@@ -31,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements ApiFactory.Respon
 
 
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        movieViewModel = new MovieListViewModel(this);
+        movieViewModel = new MovieListViewModel(this, this);
         activityMainBinding.setViewModel(movieViewModel);
         initRecyclerView(activityMainBinding.recyclerView);
 
@@ -54,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements ApiFactory.Respon
             case R.id.popular:
                 movieViewModel.gePopulartMovies();
                 return true;
+            case R.id.favorite:
+                movieViewModel.getFavoriteMovies();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -73,10 +80,11 @@ public class MainActivity extends AppCompatActivity implements ApiFactory.Respon
     }
 
     @Override
-    public void onSuccess(ApiResponse apiResponse) {
-        recyclerView.setAdapter(new MovieAdapter(this, apiResponse.movies));
+    public void onSuccess(ApiResponse movieResponse) {
+        recyclerView.setAdapter(new MovieAdapter(this,(ArrayList<Movie>) movieResponse.results));
         movieViewModel.setLoaded(true);
     }
+
 
     @Override
     protected void onPause() {

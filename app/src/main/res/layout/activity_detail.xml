@@ -10,16 +10,20 @@
             type="com.aida.popularmovies.Model.Movie" />
 
         <variable
+            name="video"
+            type="com.aida.popularmovies.Model.Video" />
+
+        <variable
             name="viewModel"
             type="com.aida.popularmovies.ViewModel.MovieViewModel" />
 
     </data>
 
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/detail_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:background="@color/colorPrimary"
         app:backgroundUrl="@{model.backgroundUrl}">
 
@@ -53,9 +57,21 @@
             android:layout_margin="@dimen/medium_margin"
             android:text="@{model.title}"
             android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/like_ib"
             app:layout_constraintStart_toEndOf="@id/rating_tv"
             app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/like_ib"
+            android:background="@drawable/selector_favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{(v) -> viewModel.onLikeClicked(v, model)}"
+            app:layout_constraintStart_toEndOf="@id/title_tv"
+            android:layout_marginEnd="@dimen/medium_margin"
+            app:isFavorite = "@{model}"
+
+            app:layout_constraintTop_toTopOf="@id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/type_tv"
@@ -123,6 +139,23 @@
             app:thumbUrl="@{model.thumbnailUrl}"
             tools:ignore="UnusedAttribute" />
 
+        <Button
+            android:id="@+id/trailer_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/button_selector"
+            android:drawableLeft="@drawable/ic_movie_24dp"
+            android:drawablePadding="@dimen/smallest_margin"
+            android:onClick="@{(v) -> viewModel.onTrailerClicked(v, video.key)}"
+            android:paddingLeft="@dimen/large_margin"
+            android:paddingRight="@dimen/large_margin"
+            android:text="@string/text_button"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/placeholder"
             android:layout_width="0dp"
@@ -131,12 +164,12 @@
             android:alpha="0.5"
             android:background="@color/colorPrimary"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="3:2"
+
+            app:layout_constraintDimensionRatio="4:2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/language_tv"
+            app:layout_constraintTop_toBottomOf="@id/trailer_btn"
             app:layout_constraintVertical_bias="1.0">
 
         </LinearLayout>
@@ -158,5 +191,23 @@
             app:layout_constraintTop_toTopOf="@id/placeholder"
             app:layout_constraintVertical_bias="0.0" />
 
+        <ExpandableListView
+            android:id="@+id/trailersAndReviews"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/opaque_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:groupIndicator="@drawable/selector_expandable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/placeholder">
+
+        </ExpandableListView>
+
     </android.support.constraint.ConstraintLayout>
+
 </layout>

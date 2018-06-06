@@ -1,7 +1,10 @@
 package com.aida.popularmovies.Model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.aida.popularmovies.Utils;
 import com.google.gson.annotations.SerializedName;
@@ -14,8 +17,13 @@ import java.util.Date;
 /**
  * Created by aida on 5/12/18.
  */
-
+@Entity
 public class Movie implements Parcelable {
+    public Movie(){}
+    @NonNull
+    @PrimaryKey
+    @SerializedName("id")
+    public int id;
     @SerializedName("vote_count")
     public int voteCount;
 
@@ -44,10 +52,10 @@ public class Movie implements Parcelable {
 
     @SerializedName("original_language")
     public String language;
-    @SerializedName("id")
-    public int id;
-    @SerializedName("genre_ids")
-    public ArrayList<Integer> genreIds;
+
+
+//    @SerializedName("genre_ids")
+//    public ArrayList<Integer> genreIds;
 
     @SerializedName("backdrop_path")
     public String backdropPath;

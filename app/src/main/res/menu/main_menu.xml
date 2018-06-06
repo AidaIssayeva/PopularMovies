@@ -10,5 +10,9 @@
             android:id="@+id/topRated"
             android:title="@string/menu_top_rated"
             app:actionViewClass="android.widget.CheckBox" />
+        <item
+            android:id="@+id/favorite"
+            android:title="@string/menu_favorite"
+            app:actionViewClass="android.widget.CheckBox" />
     </group>
 </menu>

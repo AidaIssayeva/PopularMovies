@@ -3,7 +3,12 @@
 
     <string name="transition_name">poster</string>
 
+    <string name="text_button">Watch Trailer</string>
+
+    <string name="message_no_favorite">No favorite movies found.</string>
+
     <!--menu-->
     <string name="menu_top_rated">Top Rated</string>
     <string name="menu_popular">Popular</string>
+    <string name="menu_favorite">Favorite</string>
 </resources>
