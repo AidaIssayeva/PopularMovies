@@ -11,7 +11,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -19,7 +18,8 @@ import java.util.Date;
  */
 @Entity
 public class Movie implements Parcelable {
-    public Movie(){}
+    public Movie() {}
+
     @NonNull
     @PrimaryKey
     @SerializedName("id")

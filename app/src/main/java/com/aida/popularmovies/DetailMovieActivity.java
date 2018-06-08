@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.aida.popularmovies.Model.ApiResponse;
 import com.aida.popularmovies.Model.Movie;
-import com.aida.popularmovies.Model.Review;
 import com.aida.popularmovies.Model.Video;
 import com.aida.popularmovies.ViewModel.MovieViewModel;
 import com.aida.popularmovies.databinding.ActivityDetailBinding;
@@ -72,6 +71,7 @@ public class DetailMovieActivity extends AppCompatActivity implements ApiFactory
 
     public interface DetailHandler {
         void onTrailerClicked(View v, String key);
+
         void onLikeClicked(View v, Movie movie);
     }
 }

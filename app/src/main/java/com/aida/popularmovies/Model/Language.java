@@ -14,7 +14,8 @@ public enum Language {
 
 
     String full;
-    Language(String full){
+
+    Language(String full) {
         this.full = full;
     }
 }

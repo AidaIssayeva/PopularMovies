@@ -6,14 +6,13 @@ import android.support.annotation.NonNull;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.locks.Lock;
 
 /**
  * Created by aida on 6/2/18.
  */
 
 public class AppExecutors {
-    private static AppExecutors  sInstance;
+    private static AppExecutors sInstance;
     private static Object LOCK = new Object();
     private final Executor diskIO;
 
@@ -29,7 +28,7 @@ public class AppExecutors {
 
 
     public static AppExecutors getInstance() {
-        if(sInstance == null){
+        if (sInstance == null) {
             synchronized (LOCK) {
                 sInstance = new AppExecutors(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3),
                         new MainThreadExecutor());
@@ -53,6 +52,7 @@ public class AppExecutors {
 
     private static class MainThreadExecutor implements Executor {
         private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
+
         @Override
         public void execute(@NonNull Runnable command) {
             mainThreadHandler.post(command);

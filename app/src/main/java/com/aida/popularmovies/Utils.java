@@ -26,11 +26,12 @@ public class Utils {
 
     public static final String DATABASE_NAME = "movies_db";
 
-    public static void setImage( ImageView view, String url){
+    public static void setImage(ImageView view, String url) {
         final Context context = view.getContext();
         Picasso.with(context)
                 .load(url)
                 .noFade()
+                .error(R.mipmap.ic_launcher)
                 .into(view, new Callback() {
                     @Override
                     public void onSuccess() {

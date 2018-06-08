@@ -12,9 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.aida.popularmovies.Model.ApiResponse;
-import com.aida.popularmovies.Model.MovieResponse;
 import com.aida.popularmovies.Model.Movie;
-import com.aida.popularmovies.Model.VideoResponse;
 import com.aida.popularmovies.ViewModel.MovieListViewModel;
 import com.aida.popularmovies.databinding.ActivityMainBinding;
 import com.aida.popularmovies.network.ApiFactory;
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements ApiFactory.Respon
 
     @Override
     public void onSuccess(ApiResponse movieResponse) {
-        recyclerView.setAdapter(new MovieAdapter(this,(ArrayList<Movie>) movieResponse.results));
+        recyclerView.setAdapter(new MovieAdapter(this, (ArrayList<Movie>) movieResponse.results));
         movieViewModel.setLoaded(true);
     }
 

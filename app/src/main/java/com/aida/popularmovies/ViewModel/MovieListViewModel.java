@@ -3,8 +3,6 @@ package com.aida.popularmovies.ViewModel;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.databinding.BaseObservable;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 
 import com.aida.popularmovies.AppExecutors;
@@ -15,7 +13,6 @@ import com.aida.popularmovies.Utils;
 import com.aida.popularmovies.database.MovieDatabase;
 import com.aida.popularmovies.network.ApiFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,12 +51,13 @@ public class MovieListViewModel extends BaseObservable {
     public int getRecyclerviewVisibility() {
         return isLoaded ? View.VISIBLE : View.INVISIBLE;
     }
-    public void getFavoriteMovies(){
+
+    public void getFavoriteMovies() {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
                 List<Movie> movies = movieDatabase.daoAccess().fetchFavoriteMovies();
-                if(movies != null){
+                if (movies != null) {
                     final ApiResponse apiResponse = new ApiResponse();
                     apiResponse.results = movies;
                     AppExecutors.getInstance().mainThread().execute(new Runnable() {
@@ -69,7 +67,7 @@ public class MovieListViewModel extends BaseObservable {
                         }
                     });
 
-                }else{
+                } else {
                     AppExecutors.getInstance().mainThread().execute(new Runnable() {
                         @Override
                         public void run() {

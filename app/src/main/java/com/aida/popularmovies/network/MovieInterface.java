@@ -2,10 +2,8 @@ package com.aida.popularmovies.network;
 
 import com.aida.popularmovies.Model.ApiResponse;
 import com.aida.popularmovies.Model.Movie;
-import com.aida.popularmovies.Model.MovieResponse;
 import com.aida.popularmovies.Model.Review;
 import com.aida.popularmovies.Model.Video;
-import com.aida.popularmovies.Model.VideoResponse;
 
 import java.util.ArrayList;
 

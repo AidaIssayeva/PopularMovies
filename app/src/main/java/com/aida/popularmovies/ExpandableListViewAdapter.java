@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 import com.aida.popularmovies.Model.Review;
 import com.aida.popularmovies.Model.Video;
-import com.aida.popularmovies.ViewModel.MovieViewModel;
 import com.aida.popularmovies.databinding.ListGroupItemBinding;
-import com.aida.popularmovies.databinding.ViewMovieBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,12 +24,13 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     Context context;
     HashMap<String, ArrayList<Object>> groups;
 
-    public ExpandableListViewAdapter(Context context, ArrayList<Object> videos, ArrayList<Object> reviews){
+    public ExpandableListViewAdapter(Context context, ArrayList<Object> videos, ArrayList<Object> reviews) {
         groups = new HashMap<>();
         this.context = context;
         groups.put(Utils.TRAILERS, videos);
         groups.put(Utils.REVIEWS, reviews);
     }
+
     @Override
     public int getGroupCount() {
         return 2;
@@ -49,7 +48,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        String group =(String) getGroup(groupPosition);
+        String group = (String) getGroup(groupPosition);
         return groups.get(group).get(childPosition);
     }
 
@@ -82,25 +81,25 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-            LayoutInflater layoutInflater =
-                    LayoutInflater.from(parent.getContext());
+        LayoutInflater layoutInflater =
+                LayoutInflater.from(parent.getContext());
         ListGroupItemBinding itemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.list_group_item, parent, false);
-            switch (groupPosition){
-                case 0:
-                    Review review = (Review) getChild(groupPosition, childPosition);
-                    itemBinding.setReview(review);
-                    itemBinding.setViewModel(((DetailMovieActivity)context).movieViewModel);
-                    itemBinding.lblListItem.setText(review.content);
-                    itemBinding.lblauthor.setText(review.author);
-                    break;
-                case 1:
-                    Video video = (Video) getChild(groupPosition, childPosition);
-                    itemBinding.setVideo(video);
-                    itemBinding.setViewModel(((DetailMovieActivity)context).movieViewModel);
-                    itemBinding.lblListItem.setText(video.type);
-                    itemBinding.lblauthor.setVisibility(View.GONE);
-                    break;
-            }
+        switch (groupPosition) {
+            case 0:
+                Review review = (Review) getChild(groupPosition, childPosition);
+                itemBinding.setReview(review);
+                itemBinding.setViewModel(((DetailMovieActivity) context).movieViewModel);
+                itemBinding.lblListItem.setText(review.content);
+                itemBinding.lblauthor.setText(review.author);
+                break;
+            case 1:
+                Video video = (Video) getChild(groupPosition, childPosition);
+                itemBinding.setVideo(video);
+                itemBinding.setViewModel(((DetailMovieActivity) context).movieViewModel);
+                itemBinding.lblListItem.setText(video.type);
+                itemBinding.lblauthor.setVisibility(View.GONE);
+                break;
+        }
         return itemBinding.getRoot();
     }
 

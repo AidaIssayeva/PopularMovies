@@ -2,10 +2,8 @@ package com.aida.popularmovies.network;
 
 import com.aida.popularmovies.Model.ApiResponse;
 import com.aida.popularmovies.Model.Movie;
-import com.aida.popularmovies.Model.MovieResponse;
 import com.aida.popularmovies.Model.Review;
 import com.aida.popularmovies.Model.Video;
-import com.aida.popularmovies.Model.VideoResponse;
 import com.aida.popularmovies.Utils;
 
 import java.util.ArrayList;
@@ -128,6 +126,7 @@ public class ApiFactory<T extends ApiResponse> implements Callback<ApiResponse<T
 
     public interface ResponseListener {
         void onSuccess(ApiResponse response);
+
         void onError(Throwable t);
     }
 }

@@ -8,7 +8,6 @@ import android.arch.persistence.room.Update;
 
 import com.aida.popularmovies.Model.Movie;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

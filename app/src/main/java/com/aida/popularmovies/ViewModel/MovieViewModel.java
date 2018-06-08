@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.support.v7.graphics.Palette;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.aida.popularmovies.AppExecutors;
@@ -22,8 +21,6 @@ import com.aida.popularmovies.database.MovieDatabase;
 import com.aida.popularmovies.network.ApiFactory;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
-import java.util.logging.Handler;
 
 /**
  * Created by aida on 5/12/18.
@@ -36,7 +33,7 @@ public class MovieViewModel extends BaseObservable implements DetailMovieActivit
     private static boolean isFav = false;
 
 
-    public MovieViewModel(Context context,ApiFactory.ResponseListener responseListener) {
+    public MovieViewModel(Context context, ApiFactory.ResponseListener responseListener) {
         apiFactory = new ApiFactory(responseListener);
         movieDatabase = Room.databaseBuilder(context.getApplicationContext(),
                 MovieDatabase.class, Utils.DATABASE_NAME)
@@ -91,7 +88,7 @@ public class MovieViewModel extends BaseObservable implements DetailMovieActivit
             @Override
             public void run() {
                 Movie movie1 = movieDatabase.daoAccess().fetchOneFavoriteMoviebyMovieId(movie.id);
-                if(movie1 !=null){
+                if (movie1 != null) {
                     btn.setPressed(true);
                     isFav = true;
                 }
@@ -112,11 +109,11 @@ public class MovieViewModel extends BaseObservable implements DetailMovieActivit
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                if(!isFav) {
+                if (!isFav) {
                     movieDatabase.daoAccess().insertOnlySingleMovie(movie);
                     v.setPressed(true);
                     isFav = true;
-                }else{
+                } else {
                     movieDatabase.daoAccess().deleteMovie(movie);
                     v.setPressed(false);
                     isFav = false;
@@ -130,6 +127,7 @@ public class MovieViewModel extends BaseObservable implements DetailMovieActivit
     public void getTrailers(int id) {
         apiFactory.getTrailers(id);
     }
+
     public void getReviews(int id) {
         apiFactory.getReviews(id);
     }
@@ -139,8 +137,6 @@ public class MovieViewModel extends BaseObservable implements DetailMovieActivit
         uri = Uri.parse("vnd.youtube:" + uri.getQueryParameter("v"));
         context.startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
-
-
 
 
 }
