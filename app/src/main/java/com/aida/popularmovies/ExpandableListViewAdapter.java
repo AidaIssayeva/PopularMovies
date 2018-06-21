@@ -27,8 +27,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     public ExpandableListViewAdapter(Context context, ArrayList<Object> videos, ArrayList<Object> reviews) {
         groups = new HashMap<>();
         this.context = context;
-        groups.put(Utils.TRAILERS, videos);
         groups.put(Utils.REVIEWS, reviews);
+        groups.put(Utils.TRAILERS, videos);
     }
 
     @Override
@@ -86,18 +86,18 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         ListGroupItemBinding itemBinding = DataBindingUtil.inflate(layoutInflater, R.layout.list_group_item, parent, false);
         switch (groupPosition) {
             case 0:
-                Review review = (Review) getChild(groupPosition, childPosition);
-                itemBinding.setReview(review);
-                itemBinding.setViewModel(((DetailMovieActivity) context).movieViewModel);
-                itemBinding.lblListItem.setText(review.content);
-                itemBinding.lblauthor.setText(review.author);
-                break;
-            case 1:
                 Video video = (Video) getChild(groupPosition, childPosition);
                 itemBinding.setVideo(video);
                 itemBinding.setViewModel(((DetailMovieActivity) context).movieViewModel);
                 itemBinding.lblListItem.setText(video.type);
                 itemBinding.lblauthor.setVisibility(View.GONE);
+                break;
+            case 1:
+                Review review = (Review) getChild(groupPosition, childPosition);
+                itemBinding.setReview(review);
+                itemBinding.setViewModel(((DetailMovieActivity) context).movieViewModel);
+                itemBinding.lblListItem.setText(review.content);
+                itemBinding.lblauthor.setText(review.author);
                 break;
         }
         return itemBinding.getRoot();

@@ -26,8 +26,8 @@ public class DetailMovieActivity extends AppCompatActivity implements ApiFactory
     public MovieViewModel movieViewModel;
     ActivityDetailBinding detailMovieActivity;
     private ExpandableListViewAdapter expandableListViewAdapter;
-    private ArrayList<Object> trailers;
-    private ArrayList<Object> reviews;
+    private ArrayList<Object> trailers = new ArrayList<>();
+    private ArrayList<Object> reviews = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,10 +57,9 @@ public class DetailMovieActivity extends AppCompatActivity implements ApiFactory
                 reviews = (ArrayList<Object>) videoResponse.results;
             }
         }
-        if (trailers != null && reviews != null) {
-            expandableListViewAdapter = new ExpandableListViewAdapter(this, trailers, reviews);
-            detailMovieActivity.trailersAndReviews.setAdapter(expandableListViewAdapter);
-        }
+
+        expandableListViewAdapter = new ExpandableListViewAdapter(this, trailers, reviews);
+        detailMovieActivity.trailersAndReviews.setAdapter(expandableListViewAdapter);
 
     }
 

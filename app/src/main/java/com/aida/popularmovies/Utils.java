@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 
 public class Utils {
 
-    public static String API_KEY = "fce8bae86bd90373c55ab2d4415f55c4";
+    public static String API_KEY = "";
     public static String BASE_URL = "http://api.themoviedb.org/3/movie/";
     public static String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/";
     public static String W342 = "w342/";
